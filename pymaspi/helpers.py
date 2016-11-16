@@ -35,10 +35,11 @@ def get_response(url, resourceid, params=None):
     if params:
         url = "%s%s" % (url, params)
 
+    print "URL : ", url
     try:
         response = requests.get(url)
         response.raise_for_status()
-        return response.json()
+        print response.json()
     except requests.exceptions.RequestException as exc:
         print "Exception during request %s : %s " % (url, exc)
         print '-' * 60
