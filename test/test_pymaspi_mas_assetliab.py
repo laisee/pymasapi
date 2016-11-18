@@ -3,7 +3,7 @@ import pymaspi.settings as settings
 import pymaspi.client as client
 import nose
 
-class TestPyMASAPICards:
+class TestPyMASAPIMasAseetLiability:
 
     def setup(cls):
         print "executing test setup!"
@@ -13,14 +13,14 @@ class TestPyMASAPICards:
         print "executing test teardown!"
         cls.c = None
 
-    def test_credit_card_monthly(cls):
-        ''' Method for testing monthly credit card stats '''
-        data = cls.c.credit_card("m", 5) 
+    def test_mas_asset_liability_monthly(cls):
+        ''' Method for testing monthly MAS Asset/Liability stats '''
+        data = cls.c.mas_asset_liability("m", 5) 
         ok_(data is not None,"data should not be None")
 
-    def test_credit_card_annual(cls):
-        ''' Method for testing annual credit card stats '''
-        data = cls.c.credit_card("y", 5) 
+    def test_mas_asset_liability_annual(cls):
+        ''' Method for testing annual MAS Asset/Liability stats '''
+        data = cls.c.mas_asset_liability("y", 5) 
         ok_(data is not None,"data should not be None")
 
 if __name__ == '__main__':

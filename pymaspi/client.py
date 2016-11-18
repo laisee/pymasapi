@@ -27,7 +27,7 @@ class Client:
             resourceid = settings.EXCHANGE_RATES_END_ANNUAL 
         else:
             raise ValueError("Invalid value for time period %s " % period)
-        data = get_response(cls.URL, resourceid, params)
+        return get_response(cls.URL, resourceid, params)
 
     def exchange_rates_average(cls, period, limit=5):
         params = "&limit=%s" % limit
@@ -40,8 +40,7 @@ class Client:
             resourceid = settings.EXCHANGE_RATES_AVERAGE_ANNUAL 
         else:
             raise ValueError("Invalid value for time period %s " % period)
-
-        data = get_response(cls.URL, resourceid, params)
+        return get_response(cls.URL, resourceid, params)
 
     def interest_rates(cls, type, period, limit=5):
         params = "&limit=%s" % limit
@@ -61,8 +60,7 @@ class Client:
 
         if resourceid is None:
             raise ValueError("Invalid period %s for Weekly interest rates of type %s" % (period, type))
-
-        data = get_response(cls.URL, resourceid, params)
+        return get_response(cls.URL, resourceid, params)
 
     def money_supply_dbu(cls, period, limit=5):
         params = "&limit=%s" % limit
@@ -73,8 +71,7 @@ class Client:
             resourceid = settings.MONEY_SUPPLY_DBU_ANNUAL 
         else:
             raise ValueError("Invalid value for time period %s " % period)
-
-        data = get_response(cls.URL, resourceid, params)
+        return get_response(cls.URL, resourceid, params)
 
     def credit_card(cls, period, limit=5):
         params = "&limit=%s" % limit
@@ -85,12 +82,22 @@ class Client:
             resourceid = settings.CREDIT_CARD_ANNUAL 
         else:
             raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
 
-        data = get_response(cls.URL, resourceid, params)
+    def mas_asset_liability(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY 
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
 
 if __name__ == '__main__':
     c = Client()
-    data = c.money_supply_dbu("y",1)
+    data = c.credit_card("m",1)
     if data:
         for record in data["result"]["records"]:
-            print record["interbank_1m"]
+            print record
