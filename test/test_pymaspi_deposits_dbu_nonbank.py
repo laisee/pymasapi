@@ -1,23 +1,29 @@
 from nose.tools import *
+from unittest import TestCase
 import pymaspi.settings as settings
 import pymaspi.client as client
 import nose
 
-class TestPyMASAPIDepositsDBUNonBank:
+class TestPyMASAPIDepositsDBUNonBank(TestCase):
 
+    c = client.Client()
+
+    @classmethod
     def setup(cls):
         print "executing test setup!"
-        cls.c = client.Client()
 
+    @classmethod
     def teardown(cls):
         print "executing test teardown!"
         cls.c = None
 
+    @classmethod
     def test_deposits_dbu_nonbank_monthly(cls):
         ''' Method for testing monthly Deposits DBU NonBank stats '''
         data = cls.c.mas_asset_liability("m", 5) 
         ok_(data is not None,"data should not be None")
 
+    @classmethod
     def test_deposits_dbu_nonbanky_annual(cls):
         ''' Method for testing annual Deposits DBU NonBank stats '''
         data = cls.c.mas_asset_liability("y", 5) 

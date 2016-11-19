@@ -6,7 +6,7 @@ import string
 
 from helpers import get_response
 
-class Client:
+class Client(object):
     ''' Class for retrieving data from MAS site '''
 
 
@@ -139,9 +139,31 @@ class Client:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
 
+    def loan_finance(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.FINANCE_LOAN_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.FINANCE_LOAN_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
+    def sgxst(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.SGXST_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.SGXST_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
 if __name__ == '__main__':
     c = Client()
-    data = c.loan_dbu_nonbank_byindustry("y",1)
+    data = c.sgxst("y",100)
     if data:
         for record in data["result"]["records"]:
             print record
