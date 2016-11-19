@@ -95,9 +95,53 @@ class Client:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
 
+    def asian_dollar_assets(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.ASIAN_DOLLAR_ASSETS_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.ASIAN_DOLLAR_ASSETS_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
+    def deposits_dbu_nonbank(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.DEPOSITS_DBU_NONBANK_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.DEPOSITS_DBU_NONBANK_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
+    def loan_dbu_nonbank_byindustry(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
+    def loan_acu_nonbank_byindustry(cls, period, limit=5):
+        params = "&limit=%s" % limit
+        resourceid = None
+        if string.lower(period) == "m":
+            resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_MONTHLY 
+        elif string.lower(period) == "y":
+            resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_ANNUAL
+        else:
+            raise ValueError("Invalid value for time period %s " % period)
+        return get_response(cls.URL, resourceid, params)
+
 if __name__ == '__main__':
     c = Client()
-    data = c.credit_card("m",1)
+    data = c.loan_dbu_nonbank_byindustry("y",1)
     if data:
         for record in data["result"]["records"]:
             print record

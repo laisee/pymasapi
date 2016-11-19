@@ -14,23 +14,23 @@ class TestPyMASAPI:
         cls.c = None
 
     def test_interest_rates_fin_monthly(cls):
-        ''' Method for testing monthly finance interest_rates '''
+        ''' Method for testing monthly finance interest rates '''
         data = cls.c.interest_rates("fin", "m", 5) 
         print data
         ok_(data is not None,"data should not be None")
 
     def test_interest_rates_fin_annual(cls):
-        ''' Method for testing annual finance interest_rates '''
+        ''' Method for testing annual finance interest rates '''
         data = cls.c.interest_rates("fin", "y", 5) 
         ok_(data is not None,"data should not be None")
 
     def test_interest_rates_dom_weekly(cls):
-        ''' Method for testing weekly interest_rates '''
+        ''' Method for testing weekly interest rates '''
         data = cls.c.interest_rates("dom", "w", 5) 
         ok_(data is not None,"data should not be None")
 
     def test_interest_rates_dom_monthly(cls):
-        ''' Method for testing monthly domestic finance interest_rates '''
+        ''' Method for testing monthly domestic finance interest rates '''
         data = cls.c.interest_rates("dom", "m", 5) 
         ok_(data is not None,"data should not be None")
 
