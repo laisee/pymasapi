@@ -1,0 +1,6 @@
+Package    Version
+---------- -------
+pip        9.0.1  
+requests   2.12.1 
+setuptools 28.8.0 
+wheel      0.29.0 

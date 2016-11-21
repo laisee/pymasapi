@@ -7,4 +7,4 @@ coverage erase
 coverage run --source=/Users/laisee/src/pymasapi /usr/local/bin/nosetests -c ../test/nose.cfg -vv test/
 
 # run coverage html file generation
-coverage html -d `pwd`\..\test
+coverage html
