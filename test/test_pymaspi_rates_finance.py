@@ -1,12 +1,10 @@
-from nose.tools import *
 from unittest import TestCase
-import pymaspi.settings as settings
 import pymaspi.client as client
 import nose
+from nose.tools import ok_
+
 
 class TestPyMASAPIRatesFinance(TestCase):
-
-    c = client.Client()
 
     @classmethod
     def setup(cls):
@@ -21,15 +19,16 @@ class TestPyMASAPIRatesFinance(TestCase):
     @classmethod
     def test_interest_rates_fin_monthly(cls):
         ''' Method for testing monthly finance interest rates '''
-        data = cls.c.interest_rates("fin", "m", 5) 
+        data = cls.c.interest_rates("fin", "m", 5)
         print data
-        ok_(data is not None,"data should not be None")
+        ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_interest_rates_fin_annual(cls):
         ''' Method for testing annual finance interest rates '''
-        data = cls.c.interest_rates("fin", "y", 5) 
-        ok_(data is not None,"data should not be None")
+        data = cls.c.interest_rates("fin", "y", 5)
+        ok_(data is not None, "data should not be None")
+
 
 if __name__ == '__main__':
     nose.runmodule()

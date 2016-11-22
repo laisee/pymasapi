@@ -1,12 +1,10 @@
-from nose.tools import *
 from unittest import TestCase
-import pymaspi.settings as settings
 import pymaspi.client as client
 import nose
+from nose.tools import ok_
+
 
 class TestPyMASAPIMoneySupplyDBU(TestCase):
-
-    c = client.Client()
 
     @classmethod
     def setup(cls):
@@ -21,14 +19,15 @@ class TestPyMASAPIMoneySupplyDBU(TestCase):
     @classmethod
     def test_money_supply_dbu_monthly(cls):
         ''' Method for testing monthly money supply DBU '''
-        data = cls.c.money_supply_dbu("m", 5) 
-        ok_(data is not None,"data should not be None")
+        data = cls.c.money_supply_dbu("m", 5)
+        ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_money_supply_dbu_annual(cls):
         ''' Method for testing annual money supply DBU '''
-        data = cls.c.money_supply_dbu("y", 5) 
-        ok_(data is not None,"data should not be None")
+        data = cls.c.money_supply_dbu("y", 5)
+        ok_(data is not None, "data should not be None")
+
 
 if __name__ == '__main__':
     nose.runmodule()

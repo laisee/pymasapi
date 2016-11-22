@@ -6,9 +6,9 @@ import string
 
 from helpers import get_response
 
+
 class Client(object):
     ''' Class for retrieving data from MAS site '''
-
 
     def __init__(cls):
         cls.URL = "{0:s}://{1:s}".format(settings.PROTOCOL, settings.BASE_URL)
@@ -18,13 +18,13 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "d":
-            resourceid = settings.EXCHANGE_RATES_END_DAILY 
+            resourceid = settings.EXCHANGE_RATES_END_DAILY
         elif string.lower(period) == "w":
-            resourceid = settings.EXCHANGE_RATES_END_WEEKLY 
+            resourceid = settings.EXCHANGE_RATES_END_WEEKLY
         elif string.lower(period) == "m":
-            resourceid = settings.EXCHANGE_RATES_END_MONTHLY 
+            resourceid = settings.EXCHANGE_RATES_END_MONTHLY
         elif string.lower(period) == "y":
-            resourceid = settings.EXCHANGE_RATES_END_ANNUAL 
+            resourceid = settings.EXCHANGE_RATES_END_ANNUAL
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
@@ -33,11 +33,11 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "w":
-            resourceid = settings.EXCHANGE_RATES_AVERAGE_WEEKLY 
+            resourceid = settings.EXCHANGE_RATES_AVERAGE_WEEKLY
         elif string.lower(period) == "m":
-            resourceid = settings.EXCHANGE_RATES_AVERAGE_MONTHLY 
+            resourceid = settings.EXCHANGE_RATES_AVERAGE_MONTHLY
         elif string.lower(period) == "y":
-            resourceid = settings.EXCHANGE_RATES_AVERAGE_ANNUAL 
+            resourceid = settings.EXCHANGE_RATES_AVERAGE_ANNUAL
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
@@ -66,9 +66,9 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.MONEY_SUPPLY_DBU_MONTHLY 
+            resourceid = settings.MONEY_SUPPLY_DBU_MONTHLY
         elif string.lower(period) == "y":
-            resourceid = settings.MONEY_SUPPLY_DBU_ANNUAL 
+            resourceid = settings.MONEY_SUPPLY_DBU_ANNUAL
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
@@ -77,9 +77,9 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.CREDIT_CARD_MONTHLY 
+            resourceid = settings.CREDIT_CARD_MONTHLY
         elif string.lower(period) == "y":
-            resourceid = settings.CREDIT_CARD_ANNUAL 
+            resourceid = settings.CREDIT_CARD_ANNUAL
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
@@ -88,9 +88,9 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY 
+            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY
         elif string.lower(period) == "y":
-            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY 
+            resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
@@ -99,7 +99,7 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.ASIAN_DOLLAR_ASSETS_MONTHLY 
+            resourceid = settings.ASIAN_DOLLAR_ASSETS_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.ASIAN_DOLLAR_ASSETS_ANNUAL
         else:
@@ -110,7 +110,7 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.DEPOSITS_DBU_NONBANK_MONTHLY 
+            resourceid = settings.DEPOSITS_DBU_NONBANK_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.DEPOSITS_DBU_NONBANK_ANNUAL
         else:
@@ -121,7 +121,7 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_MONTHLY 
+            resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_ANNUAL
         else:
@@ -132,7 +132,7 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_MONTHLY 
+            resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_ANNUAL
         else:
@@ -143,7 +143,7 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.FINANCE_LOAN_MONTHLY 
+            resourceid = settings.FINANCE_LOAN_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.FINANCE_LOAN_ANNUAL
         else:
@@ -154,16 +154,17 @@ class Client(object):
         params = "&limit=%s" % limit
         resourceid = None
         if string.lower(period) == "m":
-            resourceid = settings.SGXST_MONTHLY 
+            resourceid = settings.SGXST_MONTHLY
         elif string.lower(period) == "y":
             resourceid = settings.SGXST_ANNUAL
         else:
             raise ValueError("Invalid value for time period %s " % period)
         return get_response(cls.URL, resourceid, params)
 
+
 if __name__ == '__main__':
     c = Client()
-    data = c.sgxst("y",100)
+    data = c.sgxst("y", 10)
     if data:
         for record in data["result"]["records"]:
             print record

@@ -1,6 +1,8 @@
-from nose.tools import *
 from unittest import TestCase
 import pymaspi.settings as settings
+from nose.tools import ok_
+import nose
+
 
 class TESTPyMASAPISettings(TestCase):
 
@@ -16,7 +18,8 @@ class TESTPyMASAPISettings(TestCase):
     @classmethod
     def test_BASEURL(cls):
         ''' Method for testing BASEURL '''
-        ok_(settings.BASE_URL is not None, "BASE URL should not equal None! : %s" % settings.BASE_URL)
+        ok_(settings.BASE_URL is not None, "BASE URL is not set")
+
 
 if __name__ == '__main__':
     nose.runmodule()
