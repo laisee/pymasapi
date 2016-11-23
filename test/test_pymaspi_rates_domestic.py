@@ -6,10 +6,11 @@ from nose.tools import ok_
 
 class TestPyMASAPIRatesDomestic(TestCase):
 
+    c = client.Client()
+
     @classmethod
     def setup(cls):
         print "executing test setup!"
-        cls.c = client.Client()
 
     @classmethod
     def teardown(cls):

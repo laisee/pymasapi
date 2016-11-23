@@ -6,6 +6,8 @@ from nose.tools import ok_
 
 class TestPyMASAPIMoneySupplyDBU(TestCase):
 
+    c = client.Client()
+
     @classmethod
     def setup(cls):
         print "executing Money Supply DBU test setup!"

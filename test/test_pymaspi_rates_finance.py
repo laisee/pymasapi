@@ -6,6 +6,8 @@ from nose.tools import ok_
 
 class TestPyMASAPIRatesFinance(TestCase):
 
+    c = client.Client()
+
     @classmethod
     def setup(cls):
         print "executing test setup!"

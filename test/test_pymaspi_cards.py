@@ -6,10 +6,11 @@ import nose
 
 class TestPyMASAPICards(TestCase):
 
+    c = client.Client()
+
     @classmethod
     def setup(cls):
         print "executing test setup!"
-        cls.c = client.Client()
 
     @classmethod
     def teardown(cls):

@@ -1,20 +1,20 @@
 from unittest import TestCase
-import pymaspi.client as client
+import pymaspi.client as client 
 import nose
 from nose.tools import ok_
 
 
 class TestPyMASAPISGXST(TestCase):
 
+    c =  client.Client()
+
     @classmethod
     def setup(cls):
         print "executing test setup!"
-        cls.c = client.Client()
 
     @classmethod
     def teardown(cls):
         print "executing test teardown!"
-        cls.c = None
 
     @classmethod
     def test_credit_card_monthly(cls):
