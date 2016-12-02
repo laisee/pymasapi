@@ -17,7 +17,13 @@ class TESTPyMASAPISettings(TestCase):
 
     @classmethod
     def test_BASEURL(cls):
-        ''' Method for testing BASEURL '''
+        '''
+        Method for testing BASEURL
+
+        :type foo: integer or None
+        :return: None
+
+        '''
         ok_(settings.BASE_URL is not None, "BASE URL is not set")
 
 
