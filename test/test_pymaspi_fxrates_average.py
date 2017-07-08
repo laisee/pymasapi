@@ -1,5 +1,5 @@
 from unittest import TestCase
-import pymaspi.client as client
+import pymasapi.client as client
 import nose
 from nose.tools import ok_
 
@@ -10,11 +10,11 @@ class TestPyMASAPIAverage(TestCase):
 
     @classmethod
     def setup(cls):
-        print "executing fxrates test setup!"
+        print( "executing fxrates test setup!")
 
     @classmethod
     def teardown(cls):
-        print "executing fxrates test teardown!"
+        print( "executing fxrates test teardown!")
         cls.c = None
 
     @classmethod

@@ -39,10 +39,10 @@ def get_response(url, resourceid, params=None):
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as exc:
-        print "Exception during request %s : %s " % (url, exc)
-        print '-' * 60
+        print("Exception during request %s : %s " % (url, exc))
+        print('-' * 60)
         traceback.print_exc(file=sys.stdout)
-        print '-' * 60
+        print('-' * 60)
 
 
 def guard(resourceid, url):

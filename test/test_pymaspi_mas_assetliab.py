@@ -1,5 +1,5 @@
 from unittest import TestCase
-import pymaspi.client as client
+import pymasapi.client as client
 import nose
 from nose.tools import ok_
 
@@ -10,12 +10,12 @@ class TestPyMASAPIMasAseetLiability(TestCase):
 
     @classmethod
     def setup(cls):
-        print "executing test setup!"
+        print( "executing test setup!")
         cls.c = client.Client()
 
     @classmethod
     def teardown(cls):
-        print "executing test teardown!"
+        print( "executing test teardown!")
         cls.c = None
 
     @classmethod

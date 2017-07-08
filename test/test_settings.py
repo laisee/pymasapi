@@ -1,6 +1,6 @@
 from unittest import TestCase
-import pymaspi.settings as settings
 from nose.tools import ok_
+from pymasapi.settings import Settings as set
 import nose
 
 
@@ -8,12 +8,12 @@ class TESTPyMASAPISettings(TestCase):
 
     @classmethod
     def setup(cls):
-        print "executing test setup!"
-        print "base URL : ", settings.BASE_URL
+        print("executing test setup!")
+        print("base URL : ", set.BASE_URL)
 
     @classmethod
     def teardown(cls):
-        print "executing test teardown!"
+        print("executing test teardown!")
 
     @classmethod
     def test_BASEURL(cls):
@@ -24,7 +24,7 @@ class TESTPyMASAPISettings(TestCase):
         :return: None
 
         '''
-        ok_(settings.BASE_URL is not None, "BASE URL is not set")
+        ok_(set.BASE_URL is not None, "BASE URL is not set")
 
 
 if __name__ == '__main__':

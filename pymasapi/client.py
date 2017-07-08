@@ -1,17 +1,16 @@
 '''
 Module for retrieving data from MAS site
 '''
-import settings
+from .settings import Settings
 import string
-
-from helpers import get_response
+from .helpers import get_response
 
 
 class Client(object):
     ''' Class for retrieving data from MAS site '''
 
     def __init__(cls):
-        cls.URL = "{0:s}://{1:s}".format(settings.PROTOCOL, settings.BASE_URL)
+        cls.URL = "{0:s}://{1:s}".format(Settings.PROTOCOL, Settings.BASE_URL)
         pass
 
     def exchange_rates_end(cls, period, limit=5):
@@ -83,59 +82,59 @@ class Client(object):
         resourceid = None
         
         if api == "SGXST":
-            if string.lower(period) == "m":
-                resourceid = settings.SGXST_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.SGXST_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.SGXST_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.SGXST_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "FINLOAN":
-            if string.lower(period) == "m":
-                resourceid = settings.FINANCE_LOAN_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.FINANCE_LOAN_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.FINANCE_LOAN_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.FINANCE_LOAN_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "ACUNONBANKBYIND":
-            if string.lower(period) == "m":
-                resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.LOAN_ACU_NONBANK_BYINDUSTRY_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.LOAN_ACU_NONBANK_BYINDUSTRY_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.LOAN_ACU_NONBANK_BYINDUSTRY_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
 
         elif api == "DBUNONBANKBYIND":
-            if string.lower(period) == "m":
-                resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.LOAN_DBU_NONBANK_BYINDUSTRY_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.LOAN_DBU_NONBANK_BYINDUSTRY_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.LOAN_DBU_NONBANK_BYINDUSTRY_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "DBUNONBANK":
-            if string.lower(period) == "m":
-                resourceid = settings.DEPOSITS_DBU_NONBANK_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.DEPOSITS_DBU_NONBANK_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.DEPOSITS_DBU_NONBANK_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.DEPOSITS_DBU_NONBANK_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "FXRATESEND":
-            if string.lower(period) == "d":
-                resourceid = settings.EXCHANGE_RATES_END_DAILY
-            elif string.lower(period) == "w":
-                resourceid = settings.EXCHANGE_RATES_END_WEEKLY
-            elif string.lower(period) == "m":
-                resourceid = settings.EXCHANGE_RATES_END_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.EXCHANGE_RATES_END_ANNUAL
+            if period.lower() == "d":
+                resourceid = Settings.EXCHANGE_RATES_END_DAILY
+            elif period.lower() == "w":
+                resourceid = Settings.EXCHANGE_RATES_END_WEEKLY
+            elif period.lower() == "m":
+                resourceid = Settings.EXCHANGE_RATES_END_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.EXCHANGE_RATES_END_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "FXRATESAVG":
-            if string.lower(period) == "w":
-                resourceid = settings.EXCHANGE_RATES_AVERAGE_WEEKLY
-            elif string.lower(period) == "m":
-                resourceid = settings.EXCHANGE_RATES_AVERAGE_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.EXCHANGE_RATES_AVERAGE_ANNUAL
+            if period.lower() == "w":
+                resourceid = Settings.EXCHANGE_RATES_AVERAGE_WEEKLY
+            elif period.lower() == "m":
+                resourceid = Settings.EXCHANGE_RATES_AVERAGE_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.EXCHANGE_RATES_AVERAGE_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "RATES":
@@ -143,40 +142,40 @@ class Client(object):
                 raise ValueError("Type cannot be empty")
             if period is None:
                 raise ValueError("Period cannot be empty")
-            if string.lower(period) == "w":
-                resourceid = settings.INTEREST_RATES_DOMESTIC_WEEKLY if type == "dom" else None
-            elif string.lower(period) == "m":
-                resourceid = settings.INTEREST_RATES_DOMESTIC_MONTHLY if type == "dom" else settings.INTEREST_RATES_FINANCE_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.INTEREST_RATES_DOMESTIC_ANNUAL if type == "dom" else settings.INTEREST_RATES_FINANCE_ANNUAL
+            if period.lower() == "w":
+                resourceid = Settings.INTEREST_RATES_DOMESTIC_WEEKLY if type == "dom" else None
+            elif period.lower() == "m":
+                resourceid = Settings.INTEREST_RATES_DOMESTIC_MONTHLY if type == "dom" else Settings.INTEREST_RATES_FINANCE_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.INTEREST_RATES_DOMESTIC_ANNUAL if type == "dom" else Settings.INTEREST_RATES_FINANCE_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "MONEY":
-            if string.lower(period) == "m":
-                resourceid = settings.MONEY_SUPPLY_DBU_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.MONEY_SUPPLY_DBU_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.MONEY_SUPPLY_DBU_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.MONEY_SUPPLY_DBU_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "CCARD":
-            if string.lower(period) == "m":
-                resourceid = settings.CREDIT_CARD_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.CREDIT_CARD_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.CREDIT_CARD_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.CREDIT_CARD_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "MASALM":
-            if string.lower(period) == "m":
-                resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.MAS_ASSET_LIABILITY_MONTHLY
+            if period.lower() == "m":
+                resourceid = Settings.MAS_ASSET_LIABILITY_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.MAS_ASSET_LIABILITY_MONTHLY
             else:
-                raise ValueError("Invalid value for time period %s " % period)
+                raise ValueError("Invalid value for time %s " % period)
         elif api == "ADLRASSETS":
-            if string.lower(period) == "m":
-                resourceid = settings.ASIAN_DOLLAR_ASSETS_MONTHLY
-            elif string.lower(period) == "y":
-                resourceid = settings.ASIAN_DOLLAR_ASSETS_ANNUAL
+            if period.lower() == "m":
+                resourceid = Settings.ASIAN_DOLLAR_ASSETS_MONTHLY
+            elif period.lower() == "y":
+                resourceid = Settings.ASIAN_DOLLAR_ASSETS_ANNUAL
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         else:
@@ -190,4 +189,4 @@ if __name__ == '__main__':
     data = c.sgxst("y", 10)
     if data:
         for record in data["result"]["records"]:
-            print record
+            print(record)
