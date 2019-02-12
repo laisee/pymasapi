@@ -1,4 +1,3 @@
-print "here"
 if __name__ == '__main__' and __package__ is None:
     from os import sys, path
     # __file__ should be defined in this case
