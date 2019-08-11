@@ -19,13 +19,13 @@ class TestPyMASAPIAsiaDollarAssets(TestCase):
 
     @classmethod
     def test_asian_dollar_assets_monthly(cls):
-        ''' Method for testing monthly asian dollar asset stats '''
+        ''' testing monthly asian dollar asset stats '''
         data = cls.c.asian_dollar_assets("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_asian_dollar_assetsannual(cls):
-        ''' Method for testing annual asian dollar asset stats '''
+        ''' testing annual asian dollar asset stats '''
         data = cls.c.asian_dollar_assets("y", 5)
         ok_(data is not None, "data should not be None")
 

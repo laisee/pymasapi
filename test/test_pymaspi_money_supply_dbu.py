@@ -20,13 +20,13 @@ class TestPyMASAPIMoneySupplyDBU(TestCase):
 
     @classmethod
     def test_money_supply_dbu_monthly(cls):
-        ''' Method for testing monthly money supply DBU '''
+        ''' testing monthly money supply DBU '''
         data = cls.c.money_supply_dbu("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_money_supply_dbu_annual(cls):
-        ''' Method for testing annual money supply DBU '''
+        ''' testing annual money supply DBU '''
         data = cls.c.money_supply_dbu("y", 5)
         ok_(data is not None, "data should not be None")
 

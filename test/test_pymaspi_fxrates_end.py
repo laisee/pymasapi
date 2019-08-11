@@ -19,19 +19,19 @@ class TestPyMASAPIFXEnd(TestCase):
 
     @classmethod
     def test_fx_rates_end_monthl(cls):
-        ''' Method for testing month end  fx rates '''
+        ''' testing month end  fx rates '''
         data = cls.c.exchange_rates_end("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_fx_rates_end_weekly(cls):
-        ''' Method for testing week end fx rates '''
+        ''' testing week end fx rates '''
         data = cls.c.exchange_rates_end("w", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_fx_rates_end_annual(cls):
-        ''' Method for testing year end fx rates '''
+        ''' testing year end fx rates '''
         data = cls.c.exchange_rates_end("y", 5)
         ok_(data is not None, "data should not be None")
 

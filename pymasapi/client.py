@@ -3,7 +3,7 @@ Module for retrieving data from MAS site
 '''
 from .settings import Settings
 import string
-from .helpers import get_response
+from .helper import get_response
 
 
 class Client(object):
@@ -26,8 +26,6 @@ class Client(object):
     def interest_rates(cls, period, limit=5, type=None):
         params = "&limit=%s" % limit
         resourceid = cls.get_resource_id("RATES", period, type)
-        if resourceid is None:
-            raise ValueError("Invalid period %s for Weekly interest rates of type %s" % (period, type))
         return get_response(cls.URL, resourceid, params)
 
     def money_supply_dbu(cls, period, limit=5):

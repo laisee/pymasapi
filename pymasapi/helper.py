@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 from decimal import Decimal
 import requests
+from requests.exceptions import HTTPError
 
 
 def apply_format(value):
@@ -38,6 +39,13 @@ def get_response(url, resourceid, params=None):
         response = requests.get(url)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as exc:
+        print("404 Exception during request %s : %s " % (url, exc))
+        print('-' * 60)
+        traceback.print_exc(file=sys.stdout)
+        print('-' * 60)
+        raise HTTPError("404 error") from exc
+
     except requests.exceptions.RequestException as exc:
         print("Exception during request %s : %s " % (url, exc))
         print('-' * 60)
@@ -47,5 +55,7 @@ def get_response(url, resourceid, params=None):
 
 def guard(resourceid, url):
     ''' Method for checking parameters supplied '''
+    if url is None:
+        raise ValueError("URL should have a value supplied")
     if resourceid is None:
         raise ValueError("URL %s should have a resource id value supplied" % url)

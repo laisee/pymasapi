@@ -19,19 +19,19 @@ class TestPyMASAPIRatesDomestic(TestCase):
 
     @classmethod
     def test_interest_rates_dom_weekly(cls):
-        ''' Method for testing weekly interest rates '''
+        ''' testing weekly interest rates '''
         data = cls.c.interest_rates("w", 5, "dom")
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_interest_rates_dom_monthly(cls):
-        ''' Method for testing monthly domestic finance interest rates '''
+        ''' testing monthly domestic finance interest rates '''
         data = cls.c.interest_rates("m", 5, "dom")
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_interest_rates_dom_annual(cls):
-        ''' Method for testing annual domestic interest_rates '''
+        ''' testing annual domestic interest_rates '''
         data = cls.c.interest_rates("y", 5, "dom")
         ok_(data is not None, "data should not be None")
 

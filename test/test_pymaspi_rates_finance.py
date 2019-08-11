@@ -20,13 +20,13 @@ class TestPyMASAPIRatesFinance(TestCase):
 
     @classmethod
     def test_interest_rates_fin_monthly(cls):
-        ''' Method for testing monthly finance interest rates '''
+        ''' testing monthly finance interest rates '''
         data = cls.c.interest_rates("m", 5, "fin")
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_interest_rates_fin_annual(cls):
-        ''' Method for testing annual finance interest rates '''
+        ''' testing annual finance interest rates '''
         data = cls.c.interest_rates("y", 5, "fin")
         ok_(data is not None, "data should not be None")
 

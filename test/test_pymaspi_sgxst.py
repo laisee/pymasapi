@@ -18,13 +18,13 @@ class TestPyMASAPISGXST(TestCase):
 
     @classmethod
     def test_credit_card_monthly(cls):
-        ''' Method for testing monthly SGX-ST stats '''
+        ''' testing monthly SGX-ST stats '''
         data = cls.c.sgxst("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_credit_card_annual(cls):
-        ''' Method for testing annual SGX-ST stats
+        ''' testing annual SGX-ST stats
 
         Args:
             None

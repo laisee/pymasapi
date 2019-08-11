@@ -20,13 +20,13 @@ class TestPyMASAPIMasAseetLiability(TestCase):
 
     @classmethod
     def test_mas_asset_liability_monthly(cls):
-        ''' Method for testing monthly MAS Asset/Liability stats '''
+        ''' testing monthly MAS Asset/Liability stats '''
         data = cls.c.mas_asset_liability("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_mas_asset_liability_annual(cls):
-        ''' Method for testing annual MAS Asset/Liability stats '''
+        ''' testing annual MAS Asset/Liability stats '''
         data = cls.c.mas_asset_liability("y", 5)
         ok_(data is not None, "data should not be None")
 

@@ -19,14 +19,14 @@ class TestPyMASAPIDepositsDBUNonBank(TestCase):
 
     @classmethod
     def test_deposits_dbu_nonbank_monthly(cls):
-        ''' Method for testing monthly Deposits DBU NonBank stats '''
-        data = cls.c.mas_asset_liability("m", 5)
+        ''' testing monthly Deposits DBU NonBank stats '''
+        data = cls.c.deposits_dbu_nonbank("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_deposits_dbu_nonbanky_annual(cls):
-        ''' Method for testing annual Deposits DBU NonBank stats '''
-        data = cls.c.mas_asset_liability("y", 5)
+        ''' testing annual Deposits DBU NonBank stats '''
+        data = cls.c.deposits_dbu_nonbank("y", 5)
         ok_(data is not None, "data should not be None")
 
 

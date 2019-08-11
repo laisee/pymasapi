@@ -19,13 +19,13 @@ class TestPyMASAPICards(TestCase):
 
     @classmethod
     def test_credit_card_monthly(cls):
-        ''' Method for testing monthly credit card stats '''
+        ''' testing monthly credit card stats '''
         data = cls.c.credit_card("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_credit_card_annual(cls):
-        ''' Method for testing annual credit card stats '''
+        ''' testing annual credit card stats '''
         data = cls.c.credit_card("y", 5)
         ok_(data is not None, "data should not be None")
 

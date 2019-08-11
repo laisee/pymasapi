@@ -20,13 +20,13 @@ class TestPyMASAPILoanACUNonBank(TestCase):
 
     @classmethod
     def test_loan_acu_nonbank_byindustry_monthly(cls):
-        ''' Method for testing monthly Loans DBU NonBank stats '''
+        ''' testing monthly Loans DBU NonBank stats '''
         data = cls.c.loan_acu_nonbank_byindustry("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_loan_acu_nonbanky_byindustry_annual(cls):
-        ''' Method for testing annual Loans DBU NonBank stats '''
+        ''' testing annual Loans DBU NonBank stats '''
         data = cls.c.loan_acu_nonbank_byindustry("y", 5)
         ok_(data is not None, "data should not be None")
 

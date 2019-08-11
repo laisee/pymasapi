@@ -20,13 +20,13 @@ class TestPyMASAPILoanFinance(TestCase):
 
     @classmethod
     def test_loan_finance_monthly(cls):
-        ''' Method for testing monthly Loans Finance stats '''
+        ''' testing monthly Loans Finance stats '''
         data = cls.c.loan_finance("m", 5)
         ok_(data is not None, "data should not be None")
 
     @classmethod
     def test_loan_finance_annual(cls):
-        ''' Method for testing annual Loans Finance stats '''
+        ''' testing annual Loans Finance stats '''
         data = cls.c.loan_finance("y", 5)
         ok_(data is not None, "data should not be None")
 
