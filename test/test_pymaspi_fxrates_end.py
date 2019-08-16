@@ -1,40 +1,20 @@
-from unittest import TestCase
 import pymasapi.client as client
-import nose
-from nose.tools import ok_
 
 
-class TestPyMASAPIFXEnd(TestCase):
-
+def test_fx_rates_end_monthl():
     c = client.Client()
+    ''' testing month end  fx rates '''
+    data = c.exchange_rates_end("m", 5)
+    assert data is not None, "data should not be None"
 
-    @classmethod
-    def setup(cls):
-        print( "executing fxrates test setup!")
+def test_fx_rates_end_weekly():
+    ''' testing week end fx rates '''
+    c = client.Client()
+    data = c.exchange_rates_end("w", 5)
+    assert data is not None, "data should not be None"
 
-    @classmethod
-    def teardown(cls):
-        print( "executing fxrates test teardown!")
-        cls.c = None
-
-    @classmethod
-    def test_fx_rates_end_monthl(cls):
-        ''' testing month end  fx rates '''
-        data = cls.c.exchange_rates_end("m", 5)
-        ok_(data is not None, "data should not be None")
-
-    @classmethod
-    def test_fx_rates_end_weekly(cls):
-        ''' testing week end fx rates '''
-        data = cls.c.exchange_rates_end("w", 5)
-        ok_(data is not None, "data should not be None")
-
-    @classmethod
-    def test_fx_rates_end_annual(cls):
-        ''' testing year end fx rates '''
-        data = cls.c.exchange_rates_end("y", 5)
-        ok_(data is not None, "data should not be None")
-
-
-if __name__ == '__main__':
-    nose.runmodule()
+def test_fx_rates_end_annual():
+    ''' testing year end fx rates '''
+    c = client.Client()
+    data = c.exchange_rates_end("y", 5)
+    assert data is not None, "data should not be None"

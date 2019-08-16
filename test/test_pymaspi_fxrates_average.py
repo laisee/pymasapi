@@ -1,40 +1,19 @@
-from unittest import TestCase
 import pymasapi.client as client
-import nose
-from nose.tools import ok_
 
-
-class TestPyMASAPIAverage(TestCase):
-
+def test_fx_rates_average_monthly():
+    ''' testing average monthly fx rates '''
     c = client.Client()
+    data = c.exchange_rates_average("m", 5)
+    assert data is not None, "data should not be None"
 
-    @classmethod
-    def setup(cls):
-        print( "executing fxrates test setup!")
+def test_fx_rates_average_weekly():
+    ''' testing average weekly fx rates '''
+    c = client.Client()
+    data = c.exchange_rates_average("w", 5)
+    assert data is not None, "data should not be None"
 
-    @classmethod
-    def teardown(cls):
-        print( "executing fxrates test teardown!")
-        cls.c = None
-
-    @classmethod
-    def test_fx_rates_average_monthly(cls):
-        ''' testing average monthly fx rates '''
-        data = cls.c.exchange_rates_average("m", 5)
-        ok_(data is not None, "data should not be None")
-
-    @classmethod
-    def test_fx_rates_average_weekly(cls):
-        ''' testing average weekly fx rates '''
-        data = cls.c.exchange_rates_average("w", 5)
-        ok_(data is not None, "data should not be None")
-
-    @classmethod
-    def test_fx_rates_average_annual(cls):
-        ''' testing average annual fx rates '''
-        data = cls.c.exchange_rates_average("y", 5)
-        ok_(data is not None, "data should not be None")
-
-
-if __name__ == '__main__':
-    nose.runmodule()
+def test_fx_rates_average_annual():
+    ''' testing average annual fx rates '''
+    c = client.Client()
+    data = c.exchange_rates_average("y", 5)
+    assert data is not None, "data should not be None"
