@@ -1,13 +1,16 @@
+import pytest
 import pymasapi.client as client
 
-def test_loan_acu_nonbank_byindustry_monthly():
-    ''' testing monthly Loans DBU NonBank stats '''
-    c = client.Client()
-    data = c.loan_acu_nonbank_byindustry("m", 5)
-    assert data is not None, "data should not be None"
+class Test_Loan_ByIndustry:
 
-def test_loan_acu_nonbanky_byindustry_annual():
-    ''' testing annual Loans DBU NonBank stats '''
-    c = client.Client()
-    data = c.loan_acu_nonbank_byindustry("y", 5)
-    assert data is not None, "data should not be None"
+    def setup_class(cls):
+        cls.c = client.Client()
+
+    def teardown_method(cls):
+        cls.c = None
+
+    @pytest.mark.parametrize("period,limit", [("m",5), ("y",5)])
+    def test_loan_acu_nonbank_byindustry(cls, period, limit):
+        ''' testing monthly/annual Loans DBU NonBank stats '''
+        data = cls.c.loan_acu_nonbank_byindustry(period, limit)
+        assert data is not None, "data should not be None"

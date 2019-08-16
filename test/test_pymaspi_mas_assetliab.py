@@ -1,13 +1,16 @@
+import pytest
 import pymasapi.client as client
 
-def test_mas_asset_liability_monthly():
-    c = client.Client()
-    ''' testing monthly MAS Asset/Liability stats '''
-    data = c.mas_asset_liability("m", 5)
-    assert data is not None, "data should not be None"
+class Test_Asset_Liability:
 
-def test_mas_asset_liability_annual():
-    c = client.Client()
-    ''' testing annual MAS Asset/Liability stats '''
-    data = c.mas_asset_liability("y", 5)
-    assert data is not None, "data should not be None"
+    def setup_class(cls):
+        cls.c = client.Client()
+
+    def teardown_method(cls):
+        cls.c = None
+
+    @pytest.mark.parametrize("period,limit", [("m",5), ("y",5)])
+    def test_mas_asset_liability(cls, period, limit):
+        ''' testing monthly/annual MAS Asset/Liability stats '''
+        data = cls.c.mas_asset_liability(period, limit)
+        assert data is not None, "data should not be None"

@@ -1,20 +1,16 @@
+import pytest
 import pymasapi.client as client
 
+class Test_Interest_Rates_Domestic:
 
-def test_interest_rates_dom_weekly():
-    c = client.Client()
-    ''' testing weekly interest rates '''
-    data = c.interest_rates("w", 5, "dom")
-    assert data is not None, "data should not be None"
+    def setup_class(cls):
+        cls.c = client.Client()
 
-def test_interest_rates_dom_monthly():
-    c = client.Client()
-    ''' testing monthly domestic finance interest rates '''
-    data = c.interest_rates("m", 5, "dom")
-    assert data is not None, "data should not be None"
+    def teardown_method(cls):
+        cls.c = None
 
-def test_interest_rates_dom_annual():
-    c = client.Client()
-    ''' testing annual domestic interest_rates '''
-    data = c.interest_rates("y", 5, "dom")
-    assert data is not None, "data should not be None"
+    @pytest.mark.parametrize("period,limit", [("w",5), ("m",5), ("y",5)])
+    def test_interest_rates_dom(cls, period, limit):
+        ''' testing weekly/monthly/annual interest rates '''
+        data = cls.c.interest_rates(period, limit, "dom")
+        assert data is not None, "data should not be None"

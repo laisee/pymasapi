@@ -1,20 +1,16 @@
+import pytest
 import pymasapi.client as client
 
+class Test_FXRates_End:
 
-def test_fx_rates_end_monthl():
-    c = client.Client()
-    ''' testing month end  fx rates '''
-    data = c.exchange_rates_end("m", 5)
-    assert data is not None, "data should not be None"
+    def setup_class(cls):
+        cls.c = client.Client()
 
-def test_fx_rates_end_weekly():
-    ''' testing week end fx rates '''
-    c = client.Client()
-    data = c.exchange_rates_end("w", 5)
-    assert data is not None, "data should not be None"
+    def teardown_method(cls):
+        cls.c = None
 
-def test_fx_rates_end_annual():
-    ''' testing year end fx rates '''
-    c = client.Client()
-    data = c.exchange_rates_end("y", 5)
-    assert data is not None, "data should not be None"
+    @pytest.mark.parametrize("period,limit", [("w",5), ("m",5), ("y",5)])
+    def test_fx_rates_end(cls, period, limit):
+        ''' testing month end  fx rates '''
+        data = cls.c.exchange_rates_end(period,limit)
+        assert data is not None, "data should not be None"
