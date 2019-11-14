@@ -58,4 +58,5 @@ def guard(resourceid, url):
     if url is None:
         raise ValueError("URL should have a value supplied")
     if resourceid is None:
-        raise ValueError("URL %s should have a resource id value supplied" % url)
+        raise ValueError("URL %s should have a resource id value supplied" %
+                         url)

@@ -1,5 +1,6 @@
 ''' Module settings '''
 
+
 class Settings(object):
 
     BASE_URL = 'eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=%s'

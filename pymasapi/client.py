@@ -8,7 +8,6 @@ from .helper import get_response
 
 class Client(object):
     ''' Class for retrieving data from MAS site '''
-
     def __init__(cls):
         cls.URL = "{0:s}://{1:s}".format(Settings.PROTOCOL, Settings.BASE_URL)
         pass
@@ -73,12 +72,11 @@ class Client(object):
         resourceid = cls.get_resource_id("SGXST", period)
         return get_response(cls.URL, resourceid, params)
 
-
     @staticmethod
-    def get_resource_id(api, period, type = None):
+    def get_resource_id(api, period, type=None):
 
         resourceid = None
-        
+
         if api == "SGXST":
             if period.lower() == "m":
                 resourceid = Settings.SGXST_MONTHLY

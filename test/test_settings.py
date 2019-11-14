@@ -1,7 +1,7 @@
 from pymasapi.settings import Settings as set
 
-class Test_Settings:
 
+class Test_Settings:
     def test_BASEURL(cls):
         '''
         testing BASEURL
