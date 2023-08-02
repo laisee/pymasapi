@@ -26,7 +26,6 @@ class Client(object):
 
     def __init__(cls):
         cls.URL = "{0:s}://{1:s}".format(Settings.PROTOCOL, Settings.BASE_URL)
-        pass
 
     def exchange_rates_end(cls, period, limit=5):
         params = "&limit=%s" % limit
@@ -38,29 +37,29 @@ class Client(object):
         resourceid = cls.get_resource_id("FXRATESAVG", period)
         return get_response(cls.URL, resourceid, params)
 
-    def interest_rates(cls, period, limit=5, type=None):
+    def interest_rates(cls, period, limit=5, stype=None):
         params = "&limit=%s" % limit
-        resourceid = cls.get_resource_id("RATES", period, type)
+        resourceid = cls.get_resource_id("RATES", period, stype)
         return get_response(cls.URL, resourceid, params)
 
     def money_supply_dbu(cls, period, limit=5):
         params = "&limit=%s" % limit
-        resourceid = cls.get_resource_id("MONEY", period, type)
+        resourceid = cls.get_resource_id("MONEY", period)
         return get_response(cls.URL, resourceid, params)
 
     def credit_card(cls, period, limit=5):
         params = "&limit=%s" % limit
-        resourceid = cls.get_resource_id("CCARD", period, type)
+        resourceid = cls.get_resource_id("CCARD", period)
         return get_response(cls.URL, resourceid, params)
 
     def mas_asset_liability(cls, period, limit=5):
         params = "&limit=%s" % limit
-        resourceid = cls.get_resource_id("MASALM", period, type)
+        resourceid = cls.get_resource_id("MASALM", period)
         return get_response(cls.URL, resourceid, params)
 
     def asian_dollar_assets(cls, period, limit=5):
         params = "&limit=%s" % limit
-        resourceid = cls.get_resource_id("ADLRASSETS", period, type)
+        resourceid = cls.get_resource_id("ADLRASSETS", period)
         return get_response(cls.URL, resourceid, params)
 
     def deposits_dbu_nonbank(cls, period, limit=5):
@@ -89,7 +88,7 @@ class Client(object):
         return get_response(cls.URL, resourceid, params)
 
     @staticmethod
-    def get_resource_id(api, period, type=None):
+    def get_resource_id(api, period, stype=None):
         resourceid = None
 
         if api == "SGXST":
@@ -149,24 +148,24 @@ class Client(object):
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "RATES":
-            if type is None:
+            if stype is None:
                 raise ValueError("Type cannot be empty")
             if period is None:
                 raise ValueError("Period cannot be empty")
             if period.lower() == "w":
                 resourceid = (
-                    Settings.INTEREST_RATES_DOMESTIC_WEEKLY if type == "dom" else None
+                    Settings.INTEREST_RATES_DOMESTIC_WEEKLY if stype == "dom" else None
                 )
             elif period.lower() == "m":
                 resourceid = (
                     Settings.INTEREST_RATES_DOMESTIC_MONTHLY
-                    if type == "dom"
+                    if stype == "dom"
                     else Settings.INTEREST_RATES_FINANCE_MONTHLY
                 )
             elif period.lower() == "y":
                 resourceid = (
                     Settings.INTEREST_RATES_DOMESTIC_ANNUAL
-                    if type == "dom"
+                    if stype == "dom"
                     else Settings.INTEREST_RATES_FINANCE_ANNUAL
                 )
             else:
