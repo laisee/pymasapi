@@ -1,10 +1,11 @@
 ''' Module containing helper methods '''
 
 import sys
-import traceback
 import time
+import traceback
 from datetime import datetime
 from decimal import Decimal
+
 import requests
 from requests.exceptions import HTTPError
 
@@ -35,6 +36,8 @@ def get_response(url, resourceid, params=None):
     url = url % resourceid
     if params:
         url = "%s%s" % (url, params)
+
+    print(url)
     try:
         response = requests.get(url)
         response.raise_for_status()

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pymasapi"
+version = "0.1.0"
+description = "Python API wrapper around Singapore MAS financial APIs"
+authors = ["Gavin Costin <villa.straylite@proton.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+pytest = "^7.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

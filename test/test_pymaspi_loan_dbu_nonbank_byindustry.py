@@ -1,5 +1,12 @@
 import pytest
-import pymasapi.client as client
+
+try:
+    import src.client as client
+except (ImportError, ModuleNotFoundError) as err:
+    try:
+        import pymasapi.src.client as client
+    except (ImportError, ModuleNotFoundError) as err:
+        print("helper module not found at level")
 
 
 class Test_Loan_NonBank:
@@ -9,7 +16,7 @@ class Test_Loan_NonBank:
     def teardown_method(cls):
         cls.c = None
 
-    @pytest.mark.parametrize("period,limit", [("m", 5), ("y", 5)])
+    @pytest.mark.parametrize("period,limit", [("m", 5), ("y", 5)], ids=['Monthly', 'Yearly'])
     def test_loan_dbu_nonbank_byindustry(cls, period, limit):
         ''' testing monthly/annual Loans DBU NonBank stats '''
         data = cls.c.loan_dbu_nonbank_byindustry(period, limit)

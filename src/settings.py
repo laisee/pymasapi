@@ -6,7 +6,7 @@ class Settings(object):
     BASE_URL = 'eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=%s'
     PROTOCOL = "https"
 
-    INTEREST_RATES_DOMESTIC_WEEKLY = '9a51d255-fec1-4aca-9818-b7a47490243c'
+    INTEREST_RATES_DOMESTIC_WEEKLY = '9a0bf149-308c-4bd2-832d-76c8e6cb47ed'
     INTEREST_RATES_DOMESTIC_MONTHLY = 'b5adb5c2-4604-49f3-b924-b69691252380'
     INTEREST_RATES_DOMESTIC_ANNUAL = 'ea5e28f0-fdcd-4408-be63-4cd7b2471113'
 

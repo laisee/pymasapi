@@ -1,6 +1,14 @@
-from pymasapi.helper import apply_format, apply_format_level, get_datetime, get_timestamp, get_response, guard
+from pytest import raises
 from requests.exceptions import HTTPError
-import pytest
+
+
+try:
+    from src.helper import (apply_format, apply_format_level, get_datetime, get_response, get_timestamp, guard)
+except (ImportError, ModuleNotFoundError) as err:
+    try:
+        from pymasapi.src.helper import (apply_format, apply_format_level, get_datetime, get_response, get_timestamp, guard)
+    except (ImportError, ModuleNotFoundError) as err:
+        print("helper module not found at level")
 
 
 class Test_Helper:
@@ -62,7 +70,7 @@ class Test_Helper:
         :return: None
     
         '''
-        with pytest.raises(ValueError) as e:
+        with raises(ValueError) as e:
             guard(None, "https://dev.null/?and1")
 
         assert "ValueError" in str(e)
@@ -75,7 +83,7 @@ class Test_Helper:
         :return: None
     
         '''
-        with pytest.raises(ValueError) as e:
+        with raises(ValueError) as e:
             guard(None, "https://dev.null/?and1")
         assert "ValueError" in str(e)
         assert e.type == ValueError
@@ -87,7 +95,7 @@ class Test_Helper:
         :return: None
     
         '''
-        with pytest.raises(ValueError) as e:
+        with raises(ValueError) as e:
             get_response("url", None)
         assert "ValueError" in str(e)
         assert e.type == ValueError
@@ -99,7 +107,7 @@ class Test_Helper:
         :return: None
     
         '''
-        with pytest.raises(ValueError) as e:
+        with raises(ValueError) as e:
             get_response(None, "resourceid")
         assert "ValueError" in str(e)
         assert e.type == ValueError
@@ -122,7 +130,7 @@ class Test_Helper:
         :return: json
     
         '''
-        with pytest.raises(HTTPError) as e:
+        with raises(HTTPError) as e:
             get_response("https://zzz.github.com/search/repositories?q=%s",
                          "xrp")
         assert "HTTPError" in str(e)

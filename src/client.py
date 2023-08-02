@@ -1,9 +1,24 @@
 '''
 Module for retrieving data from MAS site
 '''
-from .settings import Settings
-import string
-from .helper import get_response
+
+try: 
+    from src.helper import get_response
+except (ImportError, ModuleNotFoundError) as err:
+    print(err)
+    try: 
+        from pymasapi.src.helper import get_response
+    except (ImportError, ModuleNotFoundError) as err:
+        print(err)
+
+try: 
+    from src.settings import Settings
+except (ImportError, ModuleNotFoundError) as err:
+    print(err)
+    try: 
+        from pymasapi.src.settings import Settings
+    except (ImportError, ModuleNotFoundError) as err:
+        print(err)
 
 
 class Client(object):
@@ -178,11 +193,3 @@ class Client(object):
             raise ValueError("Invalid value for API %s " % api)
 
         return resourceid
-
-
-if __name__ == '__main__':
-    c = Client()
-    data = c.sgxst("y", 10)
-    if data:
-        for record in data["result"]["records"]:
-            print(record)

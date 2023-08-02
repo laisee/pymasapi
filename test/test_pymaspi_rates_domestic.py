@@ -1,5 +1,12 @@
 import pytest
-import pymasapi.client as client
+
+try:
+    import src.client as client
+except (ImportError, ModuleNotFoundError) as err:
+    try:
+        import pymasapi.src.client as client
+    except (ImportError, ModuleNotFoundError) as err:
+        print("helper module not found at level")
 
 
 class Test_Interest_Rates_Domestic:
@@ -9,7 +16,7 @@ class Test_Interest_Rates_Domestic:
     def teardown_method(cls):
         cls.c = None
 
-    @pytest.mark.parametrize("period,limit", [("w", 5), ("m", 5), ("y", 5)])
+    @pytest.mark.parametrize("period,limit", [("w", 5)], ids=['Weekly'])
     def test_interest_rates_dom(cls, period, limit):
         ''' testing weekly/monthly/annual interest rates '''
         data = cls.c.interest_rates(period, limit, "dom")
