@@ -1,13 +1,13 @@
 import pytest
-from requests.exceptions import HTTPError
-
 
 try:
     from src.client import Client
 except (ImportError, ModuleNotFoundError) as err:
+    print(err)
     try:
         from pymasapi.src.client import Client
     except (ImportError, ModuleNotFoundError) as err:
+        print(err)
         print("helper module not found at level")
 
 
@@ -22,10 +22,26 @@ class Test_Client:
         assert cls.c is not None, "Client object should not be None"
 
     def test_credit_card(cls):
-        data = cls.c.credit_card('m')
+        data = cls.c.credit_card("m")
         assert data is not None, "Client object should not be None"
 
-    @pytest.mark.parametrize(("name"), ["SGXST", "FINLOAN", "ACUNONBANKBYIND", "DBUNONBANKBYIND", "DBUNONBANK", "FXRATESEND", "FXRATESAVG", "RATES", "MONEY", "CCARD", "MASALM", "ADLRASSETS"])
+    @pytest.mark.parametrize(
+        ("name"),
+        [
+            "SGXST",
+            "FINLOAN",
+            "ACUNONBANKBYIND",
+            "DBUNONBANKBYIND",
+            "DBUNONBANK",
+            "FXRATESEND",
+            "FXRATESAVG",
+            "RATES",
+            "MONEY",
+            "CCARD",
+            "MASALM",
+            "ADLRASSETS",
+        ],
+    )
     def test_get_resource_id(cls, name):
-        with pytest.raises(ValueError) as exc:
-            cls.c.get_resource_id(name, 'z')
+        with pytest.raises(ValueError):
+            cls.c.get_resource_id(name, "z")

@@ -1,4 +1,4 @@
-''' Module containing helper methods '''
+""" Module containing helper methods """
 
 import sys
 import time
@@ -11,27 +11,27 @@ from requests.exceptions import HTTPError
 
 
 def apply_format(value):
-    ''' Method for applying formats '''
-    return format(Decimal(value), '.5f')
+    """Method for applying formats"""
+    return format(Decimal(value), ".5f")
 
 
 def apply_format_level(value):
-    ''' Method for applying format levels '''
-    return format(Decimal(value), '.2f')
+    """Method for applying format levels"""
+    return format(Decimal(value), ".2f")
 
 
 def get_datetime():
-    ''' Method for generating datetime valsuies '''
-    return datetime.now().strftime('%Y-%m-%d %h:%m:%s')
+    """Method for generating datetime valsuies"""
+    return datetime.now().strftime("%Y-%m-%d %h:%m:%s")
 
 
 def get_timestamp():
-    ''' Method for calculating timestamps '''
+    """Method for calculating timestamps"""
     return time.mktime(time.gmtime())
 
 
 def get_response(url, resourceid, params=None):
-    ''' Method for executing API requests '''
+    """Method for executing API requests"""
     guard(resourceid, url)
     url = url % resourceid
     if params:
@@ -44,22 +44,21 @@ def get_response(url, resourceid, params=None):
         return response.json()
     except requests.exceptions.HTTPError as exc:
         print("404 Exception during request %s : %s " % (url, exc))
-        print('-' * 60)
+        print("-" * 60)
         traceback.print_exc(file=sys.stdout)
-        print('-' * 60)
+        print("-" * 60)
         raise HTTPError("404 error") from exc
 
     except requests.exceptions.RequestException as exc:
         print("Exception during request %s : %s " % (url, exc))
-        print('-' * 60)
+        print("-" * 60)
         traceback.print_exc(file=sys.stdout)
-        print('-' * 60)
+        print("-" * 60)
 
 
 def guard(resourceid, url):
-    ''' Method for checking parameters supplied '''
+    """Method for checking parameters supplied"""
     if url is None:
         raise ValueError("URL should have a value supplied")
     if resourceid is None:
-        raise ValueError("URL %s should have a resource id value supplied" %
-                         url)
+        raise ValueError("URL %s should have a resource id value supplied" % url)

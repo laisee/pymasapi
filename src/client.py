@@ -1,28 +1,29 @@
-'''
+"""
 Module for retrieving data from MAS site
-'''
+"""
 
-try: 
+try:
     from src.helper import get_response
 except (ImportError, ModuleNotFoundError) as err:
     print(err)
-    try: 
+    try:
         from pymasapi.src.helper import get_response
     except (ImportError, ModuleNotFoundError) as err:
         print(err)
 
-try: 
+try:
     from src.settings import Settings
 except (ImportError, ModuleNotFoundError) as err:
     print(err)
-    try: 
+    try:
         from pymasapi.src.settings import Settings
     except (ImportError, ModuleNotFoundError) as err:
         print(err)
 
 
 class Client(object):
-    ''' Class for retrieving data from MAS site '''
+    """Class for retrieving data from MAS site"""
+
     def __init__(cls):
         cls.URL = "{0:s}://{1:s}".format(Settings.PROTOCOL, Settings.BASE_URL)
         pass
@@ -89,7 +90,6 @@ class Client(object):
 
     @staticmethod
     def get_resource_id(api, period, type=None):
-
         resourceid = None
 
         if api == "SGXST":
@@ -154,11 +154,21 @@ class Client(object):
             if period is None:
                 raise ValueError("Period cannot be empty")
             if period.lower() == "w":
-                resourceid = Settings.INTEREST_RATES_DOMESTIC_WEEKLY if type == "dom" else None
+                resourceid = (
+                    Settings.INTEREST_RATES_DOMESTIC_WEEKLY if type == "dom" else None
+                )
             elif period.lower() == "m":
-                resourceid = Settings.INTEREST_RATES_DOMESTIC_MONTHLY if type == "dom" else Settings.INTEREST_RATES_FINANCE_MONTHLY
+                resourceid = (
+                    Settings.INTEREST_RATES_DOMESTIC_MONTHLY
+                    if type == "dom"
+                    else Settings.INTEREST_RATES_FINANCE_MONTHLY
+                )
             elif period.lower() == "y":
-                resourceid = Settings.INTEREST_RATES_DOMESTIC_ANNUAL if type == "dom" else Settings.INTEREST_RATES_FINANCE_ANNUAL
+                resourceid = (
+                    Settings.INTEREST_RATES_DOMESTIC_ANNUAL
+                    if type == "dom"
+                    else Settings.INTEREST_RATES_FINANCE_ANNUAL
+                )
             else:
                 raise ValueError("Invalid value for time period %s " % period)
         elif api == "MONEY":
